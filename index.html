@@ -6,17 +6,17 @@
 	<script src="js/facedetection/face.js"></script>
 	<script src="js/jquery.facedetection.js"></script>
 	<script>
-	
+
 	function setImage() {
 		var img = $('img')[0];
 		img.src = "/facebomb/image_remote.php?url=" + escape($("#image-url").val());
 	}
-	
+
 	$(function() {
 		$('#try').click(function() {
 			var $this = $(this);
 			var img = $('img')[0];
-			
+
 			var coords = $('img').faceDetection({
 				complete:function() {
 					$this.text('Done!');
@@ -26,37 +26,40 @@
 					alert('Error: '+message);
 				}
 			});
-			
+
 			// Get a reference to the element.
 			var elem = document.getElementById('face-bomb-canvas');
 			elem.width = img.width;
 			elem.height = img.height;
-			
-			
-						
+
+
+
 			// Always check for properties and methods, to make sure your code doesn't break 
 			// in other browsers.
 			if (elem && elem.getContext) {
-			  // Get the 2d context.
-			  // Remember: you can only initialize one context per element.
-			  var context = elem.getContext('2d');
-			  if (context) {
-			    context.drawImage(img, coords[0].positionX, 
-										coords[0].positionY, 
-										coords[0].width, 
-										coords[0].height, 
-										coords[1].positionX, 
-										coords[1].positionY,
-										coords[1].width, 
-										coords[1].height);
-			  }
-			}
+				// Get the 2d context.
+				// Remember: you can only initialize one context per element.
+				var context = elem.getContext('2d');
+				if (context) {
+					for (var i = 0; i < coords.length; i++) {
+						context.drawImage(img, 
+							coords[0].positionX, 
+							coords[0].positionY, 
+							coords[0].width, 
+							coords[0].height, 
+							coords[i].positionX, 
+							coords[i].positionY,
+							coords[i].width, 
+							coords[i].height);
+						}
+					}
+				}
+			});
+			return false;
 		});
-		return false;
-	});
-	</script>
+		</script>
 
-	<style>
+		<style>
 		body {
 			margin:0;
 		}
@@ -64,22 +67,22 @@
 			border:2px solid #FFF;
 			position:absolute;
 		}
-		
+
 		canvas {
 			position:absolute;
 		}
-	</style>
+		</style>
 
-</head>
-<body>
-	<div id="content">
-		<canvas id="face-bomb-canvas"></canvas>
-		<img id="faces" src="img/faces.jpg" />
-		<a href="#" id="try">Facebomb it!</a>
-	</div>
-	<form onSubmit="setImage(); return false;">
-		<input id="image-url" type="text"></input>
-		<input type="submit"></input>
-	</form>
-</body>
-</html>
+	</head>
+	<body>
+		<div id="content">
+			<canvas id="face-bomb-canvas"></canvas>
+			<img id="faces" src="img/faces.jpg" />
+			<a href="#" id="try">Facebomb it!</a>
+		</div>
+		<form onSubmit="setImage(); return false;">
+			<input id="image-url" type="text"></input>
+			<input type="submit"></input>
+		</form>
+	</body>
+	</html>
