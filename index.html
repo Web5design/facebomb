@@ -42,13 +42,13 @@
 			  var context = elem.getContext('2d');
 			  if (context) {
 			    context.drawImage(img, coords[0].positionX, 
-										coords[0].positionY - coords[0].positionY/5, 
+										coords[0].positionY, 
 										coords[0].width, 
-										coords[0].height + coords[0].height/3, 
+										coords[0].height, 
 										coords[1].positionX, 
-										coords[1].positionY - coords[1].positionY/5,
+										coords[1].positionY,
 										coords[1].width, 
-										coords[1].height + coords[1].height/3);
+										coords[1].height;
 			  }
 			}
 		});
