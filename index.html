@@ -6,6 +6,12 @@
 	<script src="js/facedetection/face.js"></script>
 	<script src="js/jquery.facedetection.js"></script>
 	<script>
+	
+	function setImage() {
+		var img = $('img')[0];
+		img.src = "/image_remote.php?url=" + escape($("#image-url").val());
+	}
+	
 	$(function() {
 		$('#try').click(function() {
 			var $this = $(this);
@@ -23,7 +29,11 @@
 			
 			// Get a reference to the element.
 			var elem = document.getElementById('face-bomb-canvas');
-
+			elem.width = img.width;
+			elem.height = img.height;
+			
+			
+						
 			// Always check for properties and methods, to make sure your code doesn't break 
 			// in other browsers.
 			if (elem && elem.getContext) {
@@ -63,9 +73,13 @@
 </head>
 <body>
 	<div id="content">
-		<canvas id="face-bomb-canvas" width="300" height="200"></canvas>
+		<canvas id="face-bomb-canvas"></canvas>
 		<img id="faces" src="img/faces.jpg" />
 		<a href="#" id="try">Facebomb it!</a>
 	</div>
+	<form onSubmit="setImage(); return false;">
+		<input id="image-url" type="text"></input>
+		<input type="submit"></input>
+	</form>
 </body>
 </html>
