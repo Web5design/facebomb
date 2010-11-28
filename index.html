@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Facebombing FTW</title>
+	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script> 
+	<script src="js/facedetection/ccv.js"></script> 
+	<script src="js/facedetection/face.js"></script>
+	<script src="js/jquery.facedetection.js"></script>
+	<script>
+	$(function() {
+		$('#try').click(function() {
+			var $this = $(this);
+			var img = $('img')[0];
+			
+			var coords = $('img').faceDetection({
+				complete:function() {
+					$this.text('Done!');
+				},
+				error:function(img, code, message) {
+					$this.text('error!');
+					alert('Error: '+message);
+				}
+			});
+			
+			// Get a reference to the element.
+			var elem = document.getElementById('face-bomb-canvas');
+
+			// Always check for properties and methods, to make sure your code doesn't break 
+			// in other browsers.
+			if (elem && elem.getContext) {
+			  // Get the 2d context.
+			  // Remember: you can only initialize one context per element.
+			  var context = elem.getContext('2d');
+			  if (context) {
+			    context.drawImage(img, coords[0].positionX, 
+										coords[0].positionY - coords[0].positionY/5, 
+										coords[0].width, 
+										coords[0].height + coords[0].height/3, 
+										coords[1].positionX, 
+										coords[1].positionY - coords[1].positionY/5,
+										coords[1].width, 
+										coords[1].height + coords[1].height/3);
+			  }
+			}
+		});
+		return false;
+	});
+	</script>
+
+	<style>
+		body {
+			margin:0;
+		}
+		.face {
+			border:2px solid #FFF;
+			position:absolute;
+		}
+		
+		canvas {
+			position:absolute;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="content">
+		<canvas id="face-bomb-canvas" width="300" height="300"></canvas>
+		<img id="faces" src="img/faces.jpg" />
+		<a href="#" id="try">Facebomb it!</a>
+	</div>
+</body>
+</html>
