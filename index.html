@@ -39,7 +39,7 @@
 				// Get the 2d context.
 				// Remember: you can only initialize one context per element.
 				var context = elem.getContext('2d');
-				context.retore;
+				context.retore();
 				if (context && coords.length > 1) {
 					// for (var i = 0; i < 2; i++) {
 						context.drawImage(img, 
@@ -95,6 +95,7 @@
 		
 		canvas {
 			position:absolute;
+			margin:0 0 0 30px;
 		}
 		</style>
 
