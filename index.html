@@ -39,18 +39,27 @@
 				// Get the 2d context.
 				// Remember: you can only initialize one context per element.
 				var context = elem.getContext('2d');
-				if (context) {
-					for (var i = 0; i < coords.length; i++) {
+				if (context && coords.length > 1) {
+					// for (var i = 0; i < 2; i++) {
 						context.drawImage(img, 
 							coords[0].positionX, 
 							coords[0].positionY, 
 							coords[0].width, 
 							coords[0].height, 
-							coords[i].positionX + 30, 
-							coords[i].positionY,
-							coords[i].width, 
-							coords[i].height);
-						}
+							coords[1].positionX + 30, 
+							coords[1].positionY,
+							coords[1].width, 
+							coords[1].height);
+						context.drawImage(img, 
+							coords[1].positionX, 
+							coords[1].positionY, 
+							coords[1].width, 
+							coords[1].height, 
+							coords[0].positionX + 30, 
+							coords[0].positionY,
+							coords[0].width, 
+							coords[0].height);
+						// }
 					}
 				}
 			});
@@ -78,6 +87,11 @@
 			height:40px;
 		}
 		
+		.description {
+			width:500px;
+			font-family: helvetica, arial, sans-serif;
+		}
+		
 		canvas {
 			position:absolute;
 		}
@@ -97,5 +111,7 @@
 				<input type="submit" value="submit image url"></input>
 			</fieldset>
 		</form>
+		<p class="description">This javascript application uses face recognition (via Jay Salvat's <a href="https://github.com/jaysalvat/jquery.facedetection">jQuery face detection plugin</a>), the HTML 5 canvas element and context.drawImage() method to superimpose a face on all other faces in the photo, an effect know as facebombing.</p>
+		<p class="description">I did it for the lulz.</p>
 	</body>
 	</html>
