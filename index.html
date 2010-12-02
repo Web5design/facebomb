@@ -33,7 +33,6 @@
 			elem.height = img.height;
 
 
-
 			// Always check for properties and methods, to make sure your code doesn't break 
 			// in other browsers.
 			if (elem && elem.getContext) {
@@ -47,7 +46,7 @@
 							coords[0].positionY, 
 							coords[0].width, 
 							coords[0].height, 
-							coords[i].positionX, 
+							coords[i].positionX + 30, 
 							coords[i].positionY,
 							coords[i].width, 
 							coords[i].height);
@@ -67,7 +66,18 @@
 			border:2px solid #FFF;
 			position:absolute;
 		}
-
+		
+		img#faces {
+			display:block;
+			margin:30px;
+		}
+		
+		input#try {
+			margin:0 0 0 30px;
+			width:200px;
+			height:40px;
+		}
+		
 		canvas {
 			position:absolute;
 		}
@@ -78,11 +88,14 @@
 		<div id="content">
 			<canvas id="face-bomb-canvas"></canvas>
 			<img id="faces" src="img/faces.jpg" />
-			<a href="#" id="try">Facebomb it!</a>
+			<input type="submit" id="try" value="Facebomb it!"></input>
 		</div>
 		<form onSubmit="setImage(); return false;">
-			<input id="image-url" type="text"></input>
-			<input type="submit"></input>
+			<fieldset>
+				<legend>Or try your own image</legend>
+				<input id="image-url" type="text"></input>
+				<input type="submit" value="submit image url"></input>
+			</fieldset>
 		</form>
 	</body>
 	</html>
