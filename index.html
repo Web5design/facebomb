@@ -48,8 +48,8 @@
 							coords[0].height, 
 							coords[1].positionX + 30, 
 							coords[1].positionY,
-							coords[0].width, 
-							coords[0].height);
+							coords[1].width, 
+							coords[1].height);
 						context.drawImage(img, 
 							coords[1].positionX, 
 							coords[1].positionY, 
@@ -57,8 +57,8 @@
 							coords[1].height, 
 							coords[0].positionX + 30, 
 							coords[0].positionY,
-							coords[1].width, 
-							coords[1].height);
+							coords[0].width, 
+							coords[0].height);
 						// }
 					}
 				}
@@ -102,7 +102,7 @@
 		<div id="content">
 			<canvas id="face-bomb-canvas"></canvas>
 			<img id="faces" src="img/faces.jpg" />
-			<input type="submit" id="try" value="Facebomb it!"></input>
+			<input type="submit" id="try" value="Faceswap!"></input>
 		</div>
 		<form onSubmit="setImage(); return false;">
 			<fieldset>
@@ -111,7 +111,7 @@
 				<input type="submit" value="submit image url"></input>
 			</fieldset>
 		</form>
-		<p class="description">This javascript application uses face recognition (via Jay Salvat's <a href="https://github.com/jaysalvat/jquery.facedetection">jQuery face detection plugin</a>), the HTML 5 canvas element and context.drawImage() method to superimpose a face on all other faces in the photo, an effect know as facebombing.</p>
+		<p class="description">This javascript application uses face recognition (via Jay Salvat's <a href="https://github.com/jaysalvat/jquery.facedetection">jQuery face detection plugin</a>), the HTML 5 canvas element and context.drawImage() method to swap two faces in a photo.</p>
 		<p class="description">I did it for the lulz.</p>
 	</body>
 	</html>
